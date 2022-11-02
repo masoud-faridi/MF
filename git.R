@@ -27,6 +27,7 @@ git checkout masoud
 git add git.R
 git commit -m "edit git.R"
 git push origin masoud
-
+git checkout main
+git pull origin masoud
 git push origin main
 
