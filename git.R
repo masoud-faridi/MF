@@ -9,3 +9,10 @@ git push origin masoud
 git checkout main
 
 git pull origin masoud
+
+
+#######
+# update masoud-  same level as main
+git checkout masoud
+git pull origin main
+git branch
