@@ -22,5 +22,11 @@ git push origin main
 
 #################
 
+#final
+git checkout masoud
+git add git.R
+git commit -m "edit git.R"
+git push origin masoud
 
+git push origin main
 
