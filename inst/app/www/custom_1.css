@@ -1,0 +1,15 @@
+*{
+    direction: rtl;
+}
+.h1t{
+direction: ltr;
+font-family: 'B Nazanin';
+font-size:5px;
+font-weight: normal;
+font-thickness: 100%;
+font-size: 100%;
+}
+
+.shinydashboardPlusbox{
+    direction: ltr;
+}
