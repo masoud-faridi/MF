@@ -46,6 +46,7 @@ mod_module_1_1_ui <- function(id){
       )
     )
     ,actionButton(ns('send_message'), 'Send a message')
+    ,actionButton(ns('delete_message'), 'Delete a message')
     ,plotlyOutput(ns("plotly_Output"))
     , DTOutput(ns("dt_table"))
 
@@ -72,6 +73,14 @@ mod_module_1_1_server <- function(id, notificationModule,messageModule,taskItemM
         taskItem(value = 90, color = "green", sprintf('Tab 1: Pushed a message at %s', Sys.time())
                  ))
     })
+
+
+    observeEvent(input$delete_message, {
+      notificationModule$pop_notification()
+      taskItemModule$pop_taskItem()
+      messageModule$pop_message()
+    })
+
   })
 }
 
