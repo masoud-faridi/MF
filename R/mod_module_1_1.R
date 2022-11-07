@@ -13,6 +13,8 @@
 #' @import DT
 #'
 #' @import shinydashboard
+#'
+#' @import shinyalert
 mod_module_1_1_ui <- function(id){
   ns <- NS(id)
   #shinydashboardPlus::box(class ="shinydashboardPlusbox",
@@ -46,8 +48,17 @@ mod_module_1_1_ui <- function(id){
       )
     )
     ,actionButton(ns('send_message'), 'Send a message')
+    ,actionButton(ns('delete_message'), 'Delete a message')
+    ,actionButton(ns('show_message'), 'Show a message')
+    ,actionButton(ns('show_message2'), 'Show a message')
+    ,actionButton(ns('show_message3'), 'Show a message (input)')
+
+    ,actionButton(ns('show_message4'), 'Show a message')
+    ,actionButton(ns('show_message5'), 'Confirme')
+    ,actionButton(ns('show_message6'), 'Confirme with timer')
+    ,verbatimTextOutput(ns("vto"))
     ,plotlyOutput(ns("plotly_Output"))
-    , DTOutput(ns("dt_table"))
+    ,DTOutput(ns("dt_table"))
 
   )
 
@@ -72,6 +83,72 @@ mod_module_1_1_server <- function(id, notificationModule,messageModule,taskItemM
         taskItem(value = 90, color = "green", sprintf('Tab 1: Pushed a message at %s', Sys.time())
                  ))
     })
+
+
+    observeEvent(input$delete_message, {
+      notificationModule$pop_notification()
+      taskItemModule$pop_taskItem()
+      messageModule$pop_message()
+    })
+
+    observeEvent(input$show_message, {
+      showModal(modalDialog(
+              title = "suc",
+              paste0("It seems the data has inserted successfully"),
+              easyClose = TRUE,
+              footer = NULL
+            ))
+    })
+
+
+    observeEvent(input$show_message2, {
+      shinyalert("Oops!", "Something went wrong.", type = "error")
+    })
+
+    observeEvent(input$show_message3, {
+      shinyalert("Oops!", "Something went wrong.", type = "input"
+                 ,callbackR=function(x){  output$vto <- renderPrint({ x })   }
+                 )
+
+    })
+
+    observeEvent(input$show_message4, {
+      showNotification(
+        "showNotification",
+        duration = 3,
+        closeButton = TRUE,
+        type ="warning" #c("default", "message", "warning", "error")
+      )
+    })
+
+    observeEvent(input$show_message5, {
+      shinyalert("Oops!", "Something went wrong.",
+
+                 showCancelButton = TRUE,
+                 showConfirmButton = TRUE,
+                 confirmButtonText = "OK",
+                 confirmButtonCol = "#AEDEF4",
+                 cancelButtonText = "Cancel"
+                 ,callbackR=function(x){  output$vto <- renderPrint({ x })   }
+      )
+
+    })
+
+    observeEvent(input$show_message6, {
+      shinyalert("Oops!", "confirm with timer.",
+                 timer=2500,
+                 showCancelButton = TRUE,
+                 showConfirmButton = TRUE,
+                 confirmButtonText = "OK",
+                 confirmButtonCol = "#AEDEF4",
+                 cancelButtonText = "Cancel"
+                 ,callbackR=function(x){  output$vto <- renderPrint({ x })   }
+      )
+
+    })
+
+
+
   })
 }
 

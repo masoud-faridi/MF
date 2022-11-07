@@ -57,3 +57,5 @@ messageServer = function(input, output, session) {
 #  ))
 #
 #})
+
+# messageModule$pop_message()
