@@ -17,7 +17,7 @@ mod_module_1_1_ui <- function(id){
   ns <- NS(id)
   #shinydashboardPlus::box(class ="shinydashboardPlusbox",
   shinydashboardPlusbox_MF(
-    title = h1('\u0639\u0646\u0648\u0627\u0646'
+    title = h5('\u0639\u0646\u0648\u0627\u0646'
                        ,class ="h1t2"
     ),
     closable = TRUE,

@@ -107,7 +107,8 @@ app_ui <- function(request) {
       shinydashboard::dashboardBody(
         tags$head(
 
-          tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css")
+          tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css"),
+          tags$script(inactivity)
 
           ),
 
