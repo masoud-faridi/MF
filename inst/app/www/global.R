@@ -29,7 +29,7 @@ shinydashboardPlusbox_MF<-class_convert(shinydashboardPlus::box)
 ############# timeout ###################
 ########################################
 
-timeoutSeconds <- 5
+timeoutSeconds <- 60
 
 inactivity <- sprintf("function idleTimer() {
 var t = setTimeout(logout, %s);

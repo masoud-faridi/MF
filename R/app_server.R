@@ -4,7 +4,27 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @noRd
+#' @import shinymanager
 app_server <- function(input, output, session) {
+
+  #app_sys()
+  #add_resource_path(
+  #  "www",
+  #  app_sys("app/www")
+  #)
+
+  # call the server part
+  # check_credentials returns a function to authenticate users
+  res_auth <- secure_server(
+    check_credentials = check_credentials(
+      db=app_sys("app/www/manager.sqlite"),
+      passphrase = "12345678"#key_get("R-shinymanager-key", "obiwankenobi")
+      # passphrase = "passphrase_wihtout_keyring"
+    )
+  )
+
+
+
   # Your application server logic
 
   observeEvent(input$timeOut, {
